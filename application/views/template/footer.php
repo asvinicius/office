@@ -20,10 +20,10 @@
         <footer class="footer">
             <div class="container-fluid">
                 <div class="copyright pull-left">
-                    BTGL | Versão 2.0
+                    Liga Acretinos | V. 1.0.0
                 </div>
                 <div class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script>, feito por <a href="https://www.github.com/asvinicius">Vinícius Anjos</a>
+                    &copy; <script>document.write(new Date().getFullYear())</script>, desenvolvido por Vinicius Anjos
                 </div>
             </div>
         </footer>
