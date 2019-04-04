@@ -22,7 +22,7 @@ class Login extends CI_Controller {
             if($user['status'] == '1'){
                 $session = array(
                     'userid' => $user["userid"],
-                    'name' => $user["name"],
+                    'name' => $user["nameuser"],
                     'logged' => TRUE
                 );
 

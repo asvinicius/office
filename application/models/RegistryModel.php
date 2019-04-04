@@ -44,6 +44,11 @@ class RegistryModel extends CI_Model{
         return $this->db->get("registry")->row_array();
     }
     
+    public function listreg($team) {
+        $this->db->where("team", $team);
+        return $this->db->get("registry")->result();
+    }
+    
     public function listing($spin) {
         $this->db->where("spin", $spin);
         $this->db->join('team', 'team.teamid=team', 'inner');

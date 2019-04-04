@@ -3,15 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/office/application/views/super/spin.php</file>
             <file>file:/C:/xampp/htdocs/office/application/controllers/Login.php</file>
             <file>file:/C:/xampp/htdocs/office/application/controllers/Spin.php</file>
             <file>file:/C:/xampp/htdocs/office/application/models/RegistryModel.php</file>
-            <file>file:/C:/xampp/htdocs/office/application/controllers/Team.php</file>
             <file>file:/C:/xampp/htdocs/office/application/views/super/welcome.php</file>
+            <file>file:/C:/xampp/htdocs/office/application/controllers/Team.php</file>
             <file>file:/C:/xampp/htdocs/office/application/views/super/teamview.php</file>
-            <file>file:/C:/xampp/htdocs/office/application/views/super/team.php</file>
-            <file>file:/C:/xampp/htdocs/office/application/controllers/Newteam.php</file>
+            <file>file:/C:/xampp/htdocs/office/application/models/SpinModel.php</file>
         </group>
     </open-files>
 </project-private>

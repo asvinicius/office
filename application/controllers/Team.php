@@ -53,14 +53,17 @@ class Team extends CI_Controller {
             
             $this->load->model('TeamModel');
             $this->load->model('SpinModel');
+            $this->load->model('RegistryModel');
             $team = new TeamModel();
             $spin = new SpinModel();
+            $reg = new RegistryModel();
             
             $data = $team->search($teamid);
             $data2 = $spin->listing();
+            $data3 = $reg->listreg($teamid);
             
             $pageid = array("page" => $page, "pagename" => $data['name']);
-            $msg = array("team" => $data, "spins" => $data2);
+            $msg = array("team" => $data, "spins" => $data2, "regs" => $data3);
             
             $this->load->view('template/super/menu', $pageid);
             $this->load->view('template/super/header', $pageid);

@@ -44,9 +44,6 @@
                                 <div class="col-md-8">
                                     <h4 class="title">Rodadas</h4>
                                 </div>
-                                <div class="col-md-4">
-                                    <a type="btn" class="btn btn-wd btn-info btn-block" href="#">Increver em todas</a>
-                                </div>
                             </div>
                             <div class="content">
                                 <div class="content table-responsive table-full-width">
@@ -79,7 +76,21 @@
                                                         </td>
                                                         <td><?php echo $spin->spinid ?></td>
                                                         <td><?php echo $spin->numteams ?></td>
-                                                        <td><?php echo "#" ?></td>
+                                                        <td>
+                                                            <?php
+                                                                if($regs){
+                                                                    foreach ($regs as $reg) {
+                                                                        if($reg->spin == $spin->spinid){
+                                                                            echo "Inscrito";
+                                                                        }else{
+                                                                            echo "Não inscrito";
+                                                                        }
+                                                                    }
+                                                                }else{
+                                                                    echo "Não inscrito";
+                                                                }
+                                                            ?>
+                                                        </td>
                                                         <td>
                                                             <?php if($spin->status != 0){ ?>
                                                                 <a href="<?= base_url('spin/subscribeteam/'.$spin->spinid.'-'.$team['teamid']); ?>" title="Inscrever na rodada" class="icon-success" onclick="return confirm('Confirma a incrição na RODADA <?php echo $spin->spinid ?>?');">
