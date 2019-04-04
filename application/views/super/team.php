@@ -29,7 +29,7 @@
                                     <div class="col-md-9">
                                         <form  method="post" action="<?= base_url('team/search');?>" >
                                             <div class="col-md-9">
-                                                <input required="true" class="form-control" placeholder="Pesquisar" title="Nome do time ou cartoleiro" id="username" name="username" type="text" autofocus>
+                                                <input required="true" class="form-control" placeholder="Pesquisar" title="Nome do time ou cartoleiro" id="searchtxt" name="searchtxt" type="text" autofocus>
                                             
                                             </div>
                                             <div class="col-md-3">

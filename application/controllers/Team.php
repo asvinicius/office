@@ -23,6 +23,28 @@ class Team extends CI_Controller {
             redirect(base_url('login'));
         }
     }
+
+    public function search() {
+        if ($this->isLogged()){
+            $page = $this->getPage();
+            $pageid = array("page" => $page, "pagename" => "Gerenciamento de times");
+            
+            $this->load->model('TeamModel');
+            $team = new TeamModel();
+            
+            $name = $this->input->post("searchtxt");
+            
+            $data = $team->specific($name);
+            $msg = array("teams" => $data);
+            
+            $this->load->view('template/super/menu', $pageid);
+            $this->load->view('template/super/header', $pageid);
+            $this->load->view('super/team', $msg);
+            $this->load->view('template/footer');
+        }else{
+            redirect(base_url('login'));
+        }
+    }
     
     public function changestatus($newsid=null) {
         if ($this->isLogged()){
