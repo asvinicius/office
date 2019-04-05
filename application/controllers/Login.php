@@ -23,7 +23,6 @@ class Login extends CI_Controller {
                 $session = array(
                     'userid' => $user["userid"],
                     'name' => $user["name"],
-                    'role' => $user["role"],
                     'logged' => TRUE
                 );
 

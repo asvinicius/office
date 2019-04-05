@@ -61,7 +61,7 @@
                                                         <td><?php echo $team->coach ?></td>
                                                         <td>
                                                             <a href="<?= base_url('team/subscribe/'.$team->teamid); ?>" title="Inscrever em rodadas" class="icon-success">
-                                                                <i class="ti-pencil-alt"></i>
+                                                                <i class="ti-write"></i>
                                                             </a>
                                                             <a href="<?= base_url('team/delete/'.$team->teamid); ?>" title="Excluir" class="icon-danger" onclick="return confirm('Tem certeza que deseja fazer isso?');">
                                                                 <i class="ti-trash"></i>

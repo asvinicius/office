@@ -26,22 +26,45 @@
                         <div class="card">
                             <div class="row">
                                 <div class="header">
-                                    <div class="col-md-9">
-                                        <form  method="post" action="<?= base_url('team/search');?>" >
+                                    <div class="col-md-12">
+                                        <form>
                                             <div class="col-md-9">
-                                                <input required="true" class="form-control" placeholder="Pesquisar" title="Nome do time ou cartoleiro" id="searchtxt" name="searchtxt" type="text" autofocus>
-                                            
+                                                <h3>
+                                                    <?php 
+                                                        if($spn['numteams'] == 0){
+                                                            echo "Nenhum time inscrito para a rodada!";
+                                                        }
+                                                        if($spn['numteams'] == 1){
+                                                            echo "1 time inscrito para a rodada!";
+                                                        }
+                                                        if($spn['numteams'] > 1){
+                                                            echo $spn['numteams']." times inscritos para a rodada!";
+                                                        }
+                                                    ?>
+                                                </h3>
                                             </div>
                                             <div class="col-md-3">
-                                                <button type="submit" class="btn btn-wd btn-success btn-block"><i class="ti-search"></i></button>
+                                                <a type="btn" class="btn btn-wd btn-success btn-block" href="<?= base_url('spin/codegenerator/'.$spin); ?>">Gerar código</a>
                                             </div>
                                         </form>
                                     </div>
-                                    <div class="col-md-3">
-                                        <a type="btn" class="btn btn-wd btn-info btn-block" href="<?= base_url('addteam/prepare/'.$spin); ?>">Adicionar time</a>
+                                    <div class="col-md-12">
+                                        <form  method="post" action="<?= base_url('spindetail/search');?>" >
+                                            <div class="col-md-7">
+                                                <input type="hidden" id="spin" name="spin" value="<?= $spin; ?>">   
+                                                <input required="true" class="form-control" placeholder="Pesquisar" title="Nome do time ou cartoleiro" id="searchtxt" name="searchtxt" type="text" autofocus>
+                                            
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button type="submit" class="btn btn-wd btn-success btn-block"><i class="ti-search"></i></button>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <a type="btn" class="btn btn-wd btn-info btn-block" href="<?= base_url('addteam/prepare/'.$spin); ?>">Adicionar time</a>
+                                            </div>
+                                        </form>
                                     </div>
-
                                 </div>
+                                
                             </div>
                             <div class="content">
                                 <div class="content table-responsive table-full-width">
@@ -52,7 +75,7 @@
                                                 <th title="Nome">Nome</th>
                                                 <th title="Cartoleiro">Cartoleiro</th>
                                                 <th title="Administrador">Adm responsável</th>
-                                                <th title="Selecionar">Ações</th>
+                                                <th title="Ações">Ações</th>
                                             </thead>
                                             <tbody>
                                                 <?php foreach ($teams as $team) { ?>
@@ -62,10 +85,7 @@
                                                         <td><?php echo $team->coach ?></td>
                                                         <td><?php echo $team->username ?></td>
                                                         <td>
-                                                            <a href="" title="Inscrever em rodadas" class="icon-success">
-                                                                <i class="ti-pencil-alt"></i>
-                                                            </a>
-                                                            <a href="" title="Excluir" class="icon-danger">
+                                                            <a href="<?= base_url('spin/unsubscribe/'.$spin.'-'.$team->teamid); ?>" title="Excluir time" class="icon-success" onclick="return confirm('Confirma a exclusão do <?php echo $team->name ?> na RODADA <?php echo $spin ?>?');">
                                                                 <i class="ti-trash"></i>
                                                             </a>
                                                         </td>

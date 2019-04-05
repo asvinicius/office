@@ -11,11 +11,12 @@ class Spindetail extends CI_Controller {
             
             $this->load->model('SpinModel');
             $this->load->model('RegistryModel');
-            $spin = new SpinModel();
             $reg = new RegistryModel();
+            $spin = new SpinModel();
             
             $data = $reg->listing($spinid);
-            $msg = array("teams" => $data, "spin" => $spinid);
+            $spindata = $spin->search($spinid);
+            $msg = array("teams" => $data, "spin" => $spinid, "spn" => $spindata);
             
             $this->load->view('template/super/menu', $pageid);
             $this->load->view('template/super/header', $pageid);
@@ -29,20 +30,25 @@ class Spindetail extends CI_Controller {
 
     public function search() {
         if ($this->isLogged()){
-            $page = $this->getPage();
-            $pageid = array("page" => $page, "pagename" => "Gerenciamento de times");
+            $spin = $this->input->post("spin");
             
-            $this->load->model('TeamModel');
-            $team = new TeamModel();
+            $page = $this->getPage();
+            $pageid = array("page" => $page, "pagename" => "Rodada ".$spin);
+            
+            $this->load->model('RegistryModel');
+            $this->load->model('SpinModel');
+            $reg = new RegistryModel();
+            $spinmdl = new SpinModel();
             
             $name = $this->input->post("searchtxt");
             
-            $data = $team->specific($name);
-            $msg = array("teams" => $data);
+            $data = $reg->spin($name, $spin);
+            $spindata = $spinmdl->search($spin);
+            $msg = array("teams" => $data, "spin" => $spin, "spn" => $spindata);
             
             $this->load->view('template/super/menu', $pageid);
             $this->load->view('template/super/header', $pageid);
-            $this->load->view('super/team', $msg);
+            $this->load->view('super/spindetail', $msg);
             $this->load->view('template/footer');
         }else{
             redirect(base_url('login'));

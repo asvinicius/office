@@ -38,12 +38,35 @@ class RegistryModel extends CI_Model{
         }
     }
     
+    public function getreg($team, $spin) {
+        $this->db->where("spin", $spin);
+        $this->db->where("team", $team);
+        return $this->db->get("registry")->row_array();
+    }
+    
     public function listing($spin) {
         $this->db->where("spin", $spin);
         $this->db->join('team', 'team.teamid=team', 'inner');
         $this->db->join('user', 'user.userid=admin', 'inner');
         $this->db->order_by("registryid", "asc");
         return $this->db->get("registry", 10)->result();
+    }
+    
+    public function codelist($spin) {
+        $this->db->where("spin", $spin);
+        $this->db->join('team', 'team.teamid=team', 'inner');
+        $this->db->join('user', 'user.userid=admin', 'inner');
+        $this->db->order_by("registryid", "asc");
+        return $this->db->get("registry")->result();
+    }
+    
+    public function spin($name, $spin) {
+        $this->db->where("spin", $spin);
+        $this->db->join('team', 'team.teamid=team', 'inner');
+        $this->db->like("team.name", $name);
+        $this->db->or_like("team.coach", $name);
+        $this->db->join('user', 'user.userid=admin', 'inner');
+        return $this->db->get("registry")->result();
     }
     
     function getRegistryid() {

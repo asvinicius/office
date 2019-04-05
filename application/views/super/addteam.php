@@ -27,9 +27,10 @@
                             <div class="row">
                                 <div class="header">
                                     <form  method="post" action="<?= base_url('addteam/search');?>" >
+                                        
                                         <div class="col-md-9">
+                                            <input type="hidden" id="spin" name="spin" value="<?= $spin; ?>">
                                             <input required="true" class="form-control" placeholder="Pesquisar" title="Nome do time" id="team" name="team" type="text" autofocus>
-
                                         </div>
                                         <div class="col-md-3">
                                             <button type="submit" class="btn btn-wd btn-success btn-block"><i class="ti-search"></i></button>
@@ -54,7 +55,7 @@
                                                         <td><?php echo $team->name ?></td>
                                                         <td><?php echo $team->coach ?></td>
                                                         <td>
-                                                            <a href="<?= base_url('newteam/choose/'.$team->slug) ?>" title="Selecionar time" class="icon-success">
+                                                            <a href="<?= base_url('spin/subscribespin/'.$spin.'-'.$team->teamid); ?>" title="Selecionar time" class="icon-success" onclick="return confirm('Confirma a incrição do <?php echo $team->name ?> na RODADA <?php echo $spin ?>?');">
                                                                 <i class="ti-check"></i>
                                                             </a>
                                                         </td>

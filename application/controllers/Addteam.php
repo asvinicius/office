@@ -12,7 +12,7 @@ class Addteam extends CI_Controller {
             $this->load->model('TeamModel');
             $team = new TeamModel();
             $data = $team->listing();
-            $msg = array("teams" => $data);
+            $msg = array("teams" => $data, "spin" => $spinid);
             
             $this->load->view('template/super/menu', $pageid);
             $this->load->view('template/super/header', $pageid);
@@ -25,23 +25,22 @@ class Addteam extends CI_Controller {
     
     public function search() {
         if ($this->isLogged()){
-            
             $page = $this->getPage();
             $pageid = array("page" => $page, "pagename" => "Inscrever time");
-            $name = $this->input->post("team");
             
             $this->load->model('TeamModel');
             $team = new TeamModel();
             
+            $name = $this->input->post("team");
+            $spin = $this->input->post("spin");
+            
             $data = $team->specific($name);
-            $msg = array("teams" => $data);
+            $msg = array("teams" => $data, "spin" => $spin);
             
             $this->load->view('template/super/menu', $pageid);
             $this->load->view('template/super/header', $pageid);
-            $this->load->view('super/newteam', $msg);
+            $this->load->view('super/addteam', $msg);
             $this->load->view('template/footer');
-            
-            
         }else{
             redirect(base_url('login'));
         }

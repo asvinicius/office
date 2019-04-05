@@ -62,7 +62,7 @@
                                                         <td><?php echo $spin->numteams ?></td>
                                                         <td>
                                                             <a href="<?= base_url('spindetail/detail/'.$spin->spinid); ?>" title="Ver rodada" class="icon-success">
-                                                                <i class="ti-pencil-alt"></i>
+                                                                <i class="ti-book"></i>
                                                             </a>
                                                             <a href="#" title="Gerar código" class="icon-danger">
                                                                 <i class="ti-trash"></i>
