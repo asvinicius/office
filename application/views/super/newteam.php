@@ -50,7 +50,7 @@
                                             <tbody>
                                                 <?php foreach ($teams as $team) { ?>
                                                     <tr>
-                                                        <td><img src="<?php echo $team['url_escudo_svg'] ?>" width="50" alt="..."/></td>
+                                                        <td><img src="<?php echo $team['url_escudo_svg'] ?>" width="30" alt="..."/></td>
                                                         <td><?php echo $team['nome'] ?></td>
                                                         <td><?php echo $team['nome_cartola'] ?></td>
                                                         <td>

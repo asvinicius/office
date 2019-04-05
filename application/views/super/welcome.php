@@ -21,6 +21,7 @@
     </head>
 
             <div class="content">
+                <h1><?php echo "Bem vindo, ".$this->session->userdata('name'); ?></h1>
             </div>
 
     <!--   Core JS Files   -->

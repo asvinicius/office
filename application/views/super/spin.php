@@ -6,7 +6,7 @@
         <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-        <title>Times</title>
+        <title>Rodadas</title>
 
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
@@ -24,46 +24,47 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="row">
-                                <div class="header">
-                                    <div class="col-md-9">
-                                        <form  method="post" action="<?= base_url('team/search');?>" >
-                                            <div class="col-md-9">
-                                                <input required="true" class="form-control" placeholder="Pesquisar" title="Nome do time ou cartoleiro" id="searchtxt" name="searchtxt" type="text" autofocus>
-                                            
-                                            </div>
-                                            <div class="col-md-3">
-                                                <button type="submit" class="btn btn-wd btn-success btn-block"><i class="ti-search"></i></button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a type="btn" class="btn btn-wd btn-info btn-block" href="<?= base_url('newteam'); ?>">Adicionar time</a>
-                                    </div>
-
-                                </div>
-                            </div>
                             <div class="content">
                                 <div class="content table-responsive table-full-width">
                                     <table class="table table-hover">
-                                        <?php if ($teams) { ?>
+                                        <?php if ($spins) { ?>
                                             <thead>
-                                                <th title="Escudo"></th>
-                                                <th title="Nome">Nome</th>
-                                                <th title="Cartoleiro">Cartoleiro</th>
-                                                <th title="Selecionar">Ações</th>
+                                                <th title="Status"></th>
+                                                <th title="Rodada">Rodada</th>
+                                                <th title="Campeão">Campeão</th>
+                                                <th title="Vice">Vice</th>
+                                                <th title="Terceiro">Terceiro</th>
+                                                <th title="Times">Times</th>
+                                                <th title="Mais">Mais</th>
                                             </thead>
                                             <tbody>
-                                                <?php foreach ($teams as $team) { ?>
+                                                <?php foreach ($spins as $spin) { ?>
                                                     <tr>
-                                                        <td><img src="<?php echo $team->shield ?>" width="30" alt="..."/></td>
-                                                        <td><?php echo $team->name ?></td>
-                                                        <td><?php echo $team->coach ?></td>
                                                         <td>
-                                                            <a href="<?= base_url('team/subscribe/'.$team->teamid); ?>" title="Inscrever em rodadas" class="icon-success">
+                                                            <?php 
+                                                                if($spin->status == 1){
+                                                                    ?><i class="ti-unlock icon-success" title="Rodada aberta"></i><?php
+                                                                }else{
+                                                                    if($spin->status == 2){
+                                                                        ?><i class="ti-unlock icon-warning" title="Rodada em andamento"></i><?php
+                                                                    }else{
+                                                                        if($spin->status == 0){
+                                                                            ?><i class="ti-lock icon-danger" title="Rodada fechada"></i><?php
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ?>
+                                                        </td>
+                                                        <td><?php echo $spin->spinid ?></td>
+                                                        <td><?php echo $spin->first ?></td>
+                                                        <td><?php echo $spin->second ?></td>
+                                                        <td><?php echo $spin->third ?></td>
+                                                        <td><?php echo $spin->numteams ?></td>
+                                                        <td>
+                                                            <a href="<?= base_url('spindetail/detail/'.$spin->spinid); ?>" title="Ver rodada" class="icon-success">
                                                                 <i class="ti-pencil-alt"></i>
                                                             </a>
-                                                            <a href="<?= base_url('team/delete/'.$team->teamid); ?>" title="Excluir" class="icon-danger" onclick="return confirm('Tem certeza que deseja fazer isso?');">
+                                                            <a href="#" title="Gerar código" class="icon-danger">
                                                                 <i class="ti-trash"></i>
                                                             </a>
                                                         </td>

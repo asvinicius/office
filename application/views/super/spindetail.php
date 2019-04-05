@@ -6,7 +6,7 @@
         <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-        <title>Times</title>
+        <title>Rodada</title>
 
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
@@ -38,7 +38,7 @@
                                         </form>
                                     </div>
                                     <div class="col-md-3">
-                                        <a type="btn" class="btn btn-wd btn-info btn-block" href="<?= base_url('newteam'); ?>">Adicionar time</a>
+                                        <a type="btn" class="btn btn-wd btn-info btn-block" href="<?= base_url('addteam/prepare/'.$spin); ?>">Adicionar time</a>
                                     </div>
 
                                 </div>
@@ -51,19 +51,21 @@
                                                 <th title="Escudo"></th>
                                                 <th title="Nome">Nome</th>
                                                 <th title="Cartoleiro">Cartoleiro</th>
+                                                <th title="Administrador">Adm responsável</th>
                                                 <th title="Selecionar">Ações</th>
                                             </thead>
                                             <tbody>
                                                 <?php foreach ($teams as $team) { ?>
                                                     <tr>
-                                                        <td><img src="<?php echo $team->shield ?>" width="30" alt="..."/></td>
+                                                        <td><img src="<?php echo $team ->shield ?>" width="30" alt="..."/></td>
                                                         <td><?php echo $team->name ?></td>
                                                         <td><?php echo $team->coach ?></td>
+                                                        <td><?php echo $team->username ?></td>
                                                         <td>
-                                                            <a href="<?= base_url('team/subscribe/'.$team->teamid); ?>" title="Inscrever em rodadas" class="icon-success">
+                                                            <a href="" title="Inscrever em rodadas" class="icon-success">
                                                                 <i class="ti-pencil-alt"></i>
                                                             </a>
-                                                            <a href="<?= base_url('team/delete/'.$team->teamid); ?>" title="Excluir" class="icon-danger" onclick="return confirm('Tem certeza que deseja fazer isso?');">
+                                                            <a href="" title="Excluir" class="icon-danger">
                                                                 <i class="ti-trash"></i>
                                                             </a>
                                                         </td>

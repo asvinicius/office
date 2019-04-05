@@ -41,7 +41,7 @@ ini_set("display_errors", 0 );
                             </a>
                         </li>
                         <li class="<?php if($page['current'] != null){if($page['current']["id"] == 2){echo 'active';}} ?>">
-                            <a href="<?= base_url('#'); ?>" title="Rodadas">
+                            <a href="<?= base_url('spin'); ?>" title="Rodadas">
                                 <i class="ti-list-ol"></i>
                                 <p>Rodadas</p>
                             </a>

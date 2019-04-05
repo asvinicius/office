@@ -6,7 +6,7 @@
         <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-        <title>Times</title>
+        <title>Rodada</title>
 
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
@@ -26,21 +26,15 @@
                         <div class="card">
                             <div class="row">
                                 <div class="header">
-                                    <div class="col-md-9">
-                                        <form  method="post" action="<?= base_url('team/search');?>" >
-                                            <div class="col-md-9">
-                                                <input required="true" class="form-control" placeholder="Pesquisar" title="Nome do time ou cartoleiro" id="searchtxt" name="searchtxt" type="text" autofocus>
-                                            
-                                            </div>
-                                            <div class="col-md-3">
-                                                <button type="submit" class="btn btn-wd btn-success btn-block"><i class="ti-search"></i></button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a type="btn" class="btn btn-wd btn-info btn-block" href="<?= base_url('newteam'); ?>">Adicionar time</a>
-                                    </div>
+                                    <form  method="post" action="<?= base_url('addteam/search');?>" >
+                                        <div class="col-md-9">
+                                            <input required="true" class="form-control" placeholder="Pesquisar" title="Nome do time" id="team" name="team" type="text" autofocus>
 
+                                        </div>
+                                        <div class="col-md-3">
+                                            <button type="submit" class="btn btn-wd btn-success btn-block"><i class="ti-search"></i></button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                             <div class="content">
@@ -51,20 +45,17 @@
                                                 <th title="Escudo"></th>
                                                 <th title="Nome">Nome</th>
                                                 <th title="Cartoleiro">Cartoleiro</th>
-                                                <th title="Selecionar">Ações</th>
+                                                <th title="Selecionar">Selecionar</th>
                                             </thead>
                                             <tbody>
                                                 <?php foreach ($teams as $team) { ?>
                                                     <tr>
-                                                        <td><img src="<?php echo $team->shield ?>" width="30" alt="..."/></td>
+                                                        <td><img src="<?php echo $team ->shield ?>" width="30" alt="..."/></td>
                                                         <td><?php echo $team->name ?></td>
                                                         <td><?php echo $team->coach ?></td>
                                                         <td>
-                                                            <a href="<?= base_url('team/subscribe/'.$team->teamid); ?>" title="Inscrever em rodadas" class="icon-success">
-                                                                <i class="ti-pencil-alt"></i>
-                                                            </a>
-                                                            <a href="<?= base_url('team/delete/'.$team->teamid); ?>" title="Excluir" class="icon-danger" onclick="return confirm('Tem certeza que deseja fazer isso?');">
-                                                                <i class="ti-trash"></i>
+                                                            <a href="<?= base_url('newteam/choose/'.$team->slug) ?>" title="Selecionar time" class="icon-success">
+                                                                <i class="ti-check"></i>
                                                             </a>
                                                         </td>
                                                     </tr>

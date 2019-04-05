@@ -38,10 +38,12 @@ class RegistryModel extends CI_Model{
         }
     }
     
-    public function listing() {
-        $this->db->select('*');
+    public function listing($spin) {
+        $this->db->where("spin", $spin);
+        $this->db->join('team', 'team.teamid=team', 'inner');
+        $this->db->join('user', 'user.userid=admin', 'inner');
         $this->db->order_by("registryid", "asc");
-        return $this->db->get("registry", 20)->result();
+        return $this->db->get("registry", 10)->result();
     }
     
     function getRegistryid() {

@@ -2,27 +2,30 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Team extends CI_Controller {
-
-    public function index() {
+class Spindetail extends CI_Controller {
+    
+    public function detail($spinid) {
         if ($this->isLogged()){
             $page = $this->getPage();
-            $pageid = array("page" => $page, "pagename" => "Gerenciamento de times");
+            $pageid = array("page" => $page, "pagename" => "Rodada ".$spinid);
             
-            $this->load->model('TeamModel');
-            $team = new TeamModel();
+            $this->load->model('SpinModel');
+            $this->load->model('RegistryModel');
+            $spin = new SpinModel();
+            $reg = new RegistryModel();
             
-            $data = $team->listing();
-            $msg = array("teams" => $data);
+            $data = $reg->listing($spinid);
+            $msg = array("teams" => $data, "spin" => $spinid);
             
             $this->load->view('template/super/menu', $pageid);
             $this->load->view('template/super/header', $pageid);
-            $this->load->view('super/team', $msg);
+            $this->load->view('super/spindetail', $msg);
             $this->load->view('template/footer');
         }else{
             redirect(base_url('login'));
         }
     }
+    
 
     public function search() {
         if ($this->isLogged()){
@@ -45,39 +48,35 @@ class Team extends CI_Controller {
             redirect(base_url('login'));
         }
     }
-
-    public function subscribe($teamid = null) {
+    
+    public function changestatus($newsid=null) {
         if ($this->isLogged()){
+            $this->load->model('NewsModel');
+            $news = new NewsModel();
             
-            $page = $this->getPage();
+            $data = $news->search($newsid);
             
-            $this->load->model('TeamModel');
-            $this->load->model('SpinModel');
-            $team = new TeamModel();
-            $spin = new SpinModel();
+            if($data['status'] == 0){
+                $data['status'] = 1;
+            }else{
+                $data['status'] = 0;
+            }
             
-            $data = $team->search($teamid);
-            $data2 = $spin->listing();
-            
-            $pageid = array("page" => $page, "pagename" => $data['name']);
-            $msg = array("team" => $data, "spins" => $data2);
-            
-            $this->load->view('template/super/menu', $pageid);
-            $this->load->view('template/super/header', $pageid);
-            $this->load->view('super/teamview', $msg);
-            $this->load->view('template/footer');
+            if ($news->update($data)) {
+                redirect(base_url('viewnews/index/' . $data['newsid']));
+            }
         }else{
             redirect(base_url('login'));
         }
     }
 
-    public function delete($teamid = null) {
+    public function delete($newsid = null) {
         if ($this->isLogged()){
-            $this->load->model('TeamModel');
-            $team = new TeamModel();
+            $this->load->model('NewsModel');
+            $news = new NewsModel();
             
-            if ($team->delete($teamid)) {
-                redirect(base_url('team'));
+            if ($news->delete($newsid)) {
+                redirect(base_url('news'));
             }
             
         }else{
@@ -86,7 +85,7 @@ class Team extends CI_Controller {
     }
 
     public function getPage() {
-        $current = array("id" => 1, "page" => "user");
+        $current = array("id" => 2, "page" => "user");
         return array("current" => $current);
     }
 }
